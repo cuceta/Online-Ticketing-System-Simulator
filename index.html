@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+    </meta>
+</head>
+<body>
+<h1>Real-Time Updates</h1>
+<div id="output">
+
+<h1>
+    Hello
+</h1>
+
+</div>
+
+<script>
+    const socket = new WebSocket("ws://localhost:8080/results");
+
+    socket.onmessage = function(event) {
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML += "<p>" + event.data + "</p>";
+    };
+
+    socket.onopen = function() {
+        console.log("WebSocket connection opened.");
+    };
+
+    socket.onclose = function() {
+        console.log("WebSocket connection closed.");
+    };
+</script>
+</body>
+</html>
